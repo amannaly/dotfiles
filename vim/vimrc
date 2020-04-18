@@ -145,3 +145,7 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 :  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
+
+if filereadable($HOME . "/.vim/google.vim")
+    source $HOME/.vim/google.vim
+endif
