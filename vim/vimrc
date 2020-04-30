@@ -3,6 +3,9 @@ set nocompatible              " be iMproved, required
 " enable Vundle plugin manager
 filetype off                  " required
 
+" check if on a Google machine
+let s:is_google = filereadable($HOME . "/.vim/google.vim")
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -27,8 +30,22 @@ Plugin 'terryma/vim-expand-region'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-eunuch'
 
+" Not for google
+if s:is_google==0
+  Plugin 'ycm-core/YouCompleteMe'
+
+" Add maktaba, codefmt and glaive for code formatting.
+  Plugin 'google/vim-maktaba'
+  Plugin 'google/vim-codefmt'
+  Plugin 'google/vim-glaive'
+endif
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+if s:is_google==0
+  call glaive#Install()
+endif
+
 filetype plugin indent on    " required
 syntax on
 
@@ -48,6 +65,8 @@ set hlsearch            " highlight matches
 set colorcolumn=80
 set title
 set autowriteall
+set ignorecase
+set smartcase
 
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -146,6 +165,7 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
 
-if filereadable($HOME . "/.vim/google.vim")
-    source $HOME/.vim/google.vim
+" clang format should use google style
+if s:is_google==0
+  Glaive vim-codefmt clang_format_style='google'
 endif
