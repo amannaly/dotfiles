@@ -496,8 +496,14 @@ before packages are loaded."
   (add-hook 'org-mode-hook 'fci-mode)
   (setq fci-rule-color "black")
 
-  (setq org-hide-emphasis-markers t)
-  (setq org-agenda-files '("~/org"))
+  (with-eval-after-load 'org
+    ;; Org config
+    (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
+    (setq org-hide-emphasis-markers t)
+    (setq org-startup-indented t)
+    )
+
+  (define-key evil-normal-state-map [(shift b)] 'evil-first-non-blank)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
