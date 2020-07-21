@@ -30,6 +30,8 @@ Plugin 'terryma/vim-expand-region'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-eunuch'
 Plugin 'jlanzarotta/bufexplorer'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 " Not for google
 if s:is_google==0
@@ -137,6 +139,7 @@ noremap <leader>fc :FormatCode<CR>
 let g:signify_disable_by_default = 0
 let g:signify_line_highlight = 0
 nnoremap <leader>c :SignifyToggle<CR>
+nnoremap <leader>hu :SignifyHunkUndo<CR>
 
 map <C-n> :NERDTreeToggle<CR>
 nnoremap <C-n><C-f> :NERDTreeFind<CR>
@@ -173,10 +176,15 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
 
+let g:UltiSnipsExpandTrigger = "<C-J>"
+let g:UltiSnipsJumpForwardTrigger = "<C-J>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
+
 " clang format should use google style
 if s:is_google==0
   Glaive vim-codefmt clang_format_style='google'
 endif
+
 
 if s:is_google
     source $HOME/.vim/google.vim
