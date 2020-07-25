@@ -69,7 +69,7 @@ ZSH_CUSTOM=$HOME/.zsh/custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting autojump)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -103,3 +103,16 @@ prompt pure
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+
+##############################
+# Google customizations.
+##############################
+
+source_file () {
+  if [[ -f $1 ]]; then
+    source $1
+  fi
+}
+# g4d definition
+source_file /etc/bash_completion.d/g4d
