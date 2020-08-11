@@ -16,7 +16,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-sensible'
 Plugin 'sjl/gundo.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -32,6 +31,8 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 
 " Not for google
 if s:is_google==0
@@ -177,9 +178,14 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
 
+" Ultisnips settings.
 let g:UltiSnipsExpandTrigger = "<C-J>"
 let g:UltiSnipsJumpForwardTrigger = "<C-J>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
+
+" FZF settings.
+nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
+nnoremap <C-P> :FZF<CR>
 
 " clang format should use google style
 if s:is_google==0
@@ -187,6 +193,7 @@ if s:is_google==0
 endif
 
 
+" Checking for google vim
 if s:is_google
     source $HOME/.vim/google.vim
 endif
