@@ -116,3 +116,6 @@ source_file () {
 }
 # g4d definition
 source_file /etc/bash_completion.d/g4d
+
+# fzf key bindings for linux
+source_file /usr/share/doc/fzf/examples/key-bindings.zsh
