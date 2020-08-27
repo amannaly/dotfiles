@@ -495,12 +495,18 @@ before packages are loaded."
   (turn-on-fci-mode)
   (add-hook 'org-mode-hook 'fci-mode)
   (setq fci-rule-color "black")
+  (setq fci-rule-column 100)
 
   (with-eval-after-load 'org
     ;; Org config
     (setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
     (setq org-hide-emphasis-markers t)
     (setq org-startup-indented t)
+    (add-hook 'org-mode-hook #'visual-line-mode)
+
+    ;; multiline emphasis
+    (setcar (nthcdr 4 org-emphasis-regexp-components) 100)
+    (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components) 
     )
 
   (define-key evil-normal-state-map [(shift b)] 'evil-first-non-blank)
