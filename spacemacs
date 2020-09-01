@@ -45,7 +45,6 @@ This function should only modify configuration layer settings."
      helm
      ;; lsp
      ;; markdown
-     multiple-cursors
      org
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -53,7 +52,6 @@ This function should only modify configuration layer settings."
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
-     treemacs
      )
 
    ;; List of additional packages that will be installed without being
@@ -63,7 +61,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(helm-org-rifle)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -513,6 +511,13 @@ before packages are loaded."
 
   ;; avoid following symlink prompts.
   (setq vc-follow-symlinks t)
+
+  ;; TODO
+  (setq org-todo-keywords '((sequence "TODO(t)" "INPROGRESS(w)" "|" "DONE(d)" "CANCELLED(c)")))
+
+  ;; org-refile
+  ;; refile targets should be all agenda-files
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -540,3 +545,17 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  )
 )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (helm-org-rifle ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot fuzzy flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word company-statistics column-enforce-mode clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
