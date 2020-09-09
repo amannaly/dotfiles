@@ -501,6 +501,8 @@ before packages are loaded."
     (setq org-hide-emphasis-markers t)
     (setq org-startup-indented t)
     (add-hook 'org-mode-hook #'visual-line-mode)
+    ;; map org-rifle to C-c f
+    (define-key org-mode-map (kbd "C-c f") 'helm-org-rifle-agenda-files)
 
     ;; multiline emphasis
     (setcar (nthcdr 4 org-emphasis-regexp-components) 100)
@@ -516,8 +518,12 @@ before packages are loaded."
   (setq org-todo-keywords '((sequence "TODO(t)" "INPROGRESS(w)" "|" "DONE(d)" "CANCELLED(c)")))
 
   ;; org-refile
+  ;; from https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
   ;; refile targets should be all agenda-files
   (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+  ;; also show file names for top-level refile.
+  (setq org-refile-use-outline-path 'file)
+  (setq org-outline-path-complete-in-steps nil)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
