@@ -370,7 +370,7 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers 'relative
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -489,11 +489,16 @@ before packages are loaded."
   (setq-default evil-escape-key-sequence "jk")
   (setq-default evil-escape-delay 0.2)
 
-  ;; add a vertical line at 80
+  ;; add a vertical line at 100
   (turn-on-fci-mode)
   (add-hook 'org-mode-hook 'fci-mode)
-  (setq fci-rule-color "black")
-  (setq fci-rule-column 100)
+  (add-hook 'org-mode-hook 'turn-on-auto-fill)
+  (setq-default fci-rule-color "black")
+  (setq-default fci-rule-column 100)
+  (setq-default fill-column 100)
+
+  ;; display relative line numbers
+  (setq display-line-numbers 'relative)
 
   (with-eval-after-load 'org
     ;; Org config
@@ -524,6 +529,9 @@ before packages are loaded."
   ;; also show file names for top-level refile.
   (setq org-refile-use-outline-path 'file)
   (setq org-outline-path-complete-in-steps nil)
+
+  ;; all done tasks should be archived to archive.org
+  (setq org-archive-location "~/org/archive.org::")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
