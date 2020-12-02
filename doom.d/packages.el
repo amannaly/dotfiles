@@ -48,3 +48,6 @@
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
+
+(package! helm-org-rifle)
+(package! fill-column-indicator)

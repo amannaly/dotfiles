@@ -55,3 +55,30 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;; map SPC s r to org-rifle
+(map! :after org
+      :map org-mode-map
+      :leader
+      :prefix ("s" . "+search")
+      :desc "Rifle agenda files" "r" #'helm-org-rifle-agenda-files)
+
+(after! org
+ (setq org-hide-emphasis-markers t))
+
+;; configure fill-column-indicator plugin
+;; this feature is natively provided by emacs 27, howerver
+;; mac still uses 26 version.
+(add-hook 'org-mode-hook 'fci-mode)
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
+(setq-default fci-rule-color "#0F0E0E")
+(setq-default fci-rule-column 100)
+(setq-default fci-rule-width 0)
+(setq-default fill-column 100)
+
+;; maximize window on startup
+(add-hook 'window-setup-hook #'toggle-frame-maximized)
+
+(map! :map evil-normal-state-map
+      "B" #'evil-first-non-blank
+      "E" #'evil-last-non-blank)
