@@ -119,3 +119,8 @@ source_file /etc/bash_completion.d/g4d
 
 # fzf key bindings for linux
 source_file /usr/share/doc/fzf/examples/key-bindings.zsh
+
+# fd is often installed as fdfind; alias to fd if that is the case.
+if ! type "$fdfind" > /dev/null; then
+  alias fd=fdfind
+fi
