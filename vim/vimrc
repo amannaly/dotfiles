@@ -15,7 +15,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-sensible'
-Plugin 'sjl/gundo.vim'
+Plugin 'mbbill/undotree'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -89,7 +89,7 @@ nnoremap gV `[v`]
 inoremap jk <esc>
 
 " toggle gundo
-nnoremap <leader>u :GundoToggle<CR>
+nnoremap <leader>u ::UndotreeToggle<CR>>
 
 set foldenable          " enable folding
 set foldlevelstart=10   " open most folds by default
@@ -156,6 +156,9 @@ nnoremap <C-n><C-f> :NERDTreeFind<CR>
 " while in insert mode go to the end of the line to insert
 imap <C-e> <esc>$a
 
+" save using using ss in normal mode.
+nnoremap ss :w<CR>
+
 " airline settings.
 let g:airline_section_x = ''
 let g:airline_section_y = ''
@@ -191,7 +194,7 @@ let g:UltiSnipsJumpForwardTrigger = "<C-J>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
 
 " FZF settings.
-nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
+nnoremap <silent> <Leader>fs :Rg <C-R><C-W><CR>
 nnoremap <C-P> :FZF<CR>
 " Fuzzy search history.
 nnoremap <silent> <leader>fh :History:<CR>

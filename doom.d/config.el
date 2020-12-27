@@ -69,6 +69,10 @@
    org-hide-emphasis-markers t
    org-ellipsis " ... "))
 
+   ;; multiline emphasis
+   (setcar (nthcdr 4 org-emphasis-regexp-components) 100)
+   (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+
 ;; configure fill-column-indicator plugin
 ;; this feature is natively provided by emacs 27, howerver
 ;; mac still uses 26 version.
