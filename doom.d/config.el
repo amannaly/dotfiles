@@ -56,6 +56,7 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+
 ;; map SPC s r to org-rifle
 (map! :after org
       :map org-mode-map
@@ -64,7 +65,9 @@
       :desc "Rifle agenda files" "r" #'helm-org-rifle-agenda-files)
 
 (after! org
- (setq org-hide-emphasis-markers t))
+  (setq
+   org-hide-emphasis-markers t
+   org-ellipsis " ... "))
 
 ;; configure fill-column-indicator plugin
 ;; this feature is natively provided by emacs 27, howerver
@@ -81,4 +84,7 @@
 
 (map! :map evil-normal-state-map
       "B" #'evil-first-non-blank
-      "E" #'evil-last-non-blank)
+      "E" #'evil-last-non-blank
+      ; s is mapped to evil-substitue. remove that so that i can map ss to write
+      "s" nil
+      "ss" #'evil-write)
