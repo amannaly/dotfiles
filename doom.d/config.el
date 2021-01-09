@@ -29,9 +29,15 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-one)
 
+; In macOS we cannot symlink to Google drive sync directory.
+(setq local-org-directory
+      (if (file-directory-p "/Volumes/GoogleDrive/My Drive/org")
+          "/Volumes/GoogleDrive/My Drive/org"
+        "~/org"))
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/org")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -56,6 +62,7 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+
 ;; map SPC s r to org-rifle
 (map! :after org
       :map org-mode-map
@@ -64,7 +71,32 @@
       :desc "Rifle agenda files" "r" #'helm-org-rifle-agenda-files)
 
 (after! org
- (setq org-hide-emphasis-markers t))
+  (setq
+   org-hide-emphasis-markers t
+   org-ellipsis " ... "
+   org-agenda-files (directory-files-recursively "~/org/" "\\.org$")
+   org-todo-keywords '((sequence "TODO(t)" "INPROGRESS(w)" "|" "DONE(d)" "CANCELLED(c)"))
+
+   ;; org-refile
+   ;; from https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
+   ;; refile targets should be all agenda-files
+   org-refile-targets '((org-agenda-files :maxlevel . 3))
+   ;; also show file names for top-level refile.
+   org-refile-use-outline-path 'file
+   org-outline-path-complete-in-steps nil
+
+   ;; all done tasks should be archived to archive.org
+   org-archive-location "~/org/archive.org::"
+
+   org-log-done t
+   )
+  ;; multiline emphasis
+  (setcar (nthcdr 4 org-emphasis-regexp-components) 100)
+  (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+
+  ; turn on flyspell for spell checks.
+  (add-hook 'org-mode-hook 'turn-on-flyspell)
+  )
 
 ;; configure fill-column-indicator plugin
 ;; this feature is natively provided by emacs 27, howerver
@@ -81,4 +113,7 @@
 
 (map! :map evil-normal-state-map
       "B" #'evil-first-non-blank
-      "E" #'evil-last-non-blank)
+      "E" #'evil-last-non-blank
+      ; s is mapped to evil-substitue. remove that so that i can map ss to write
+      "s" nil
+      "ss" #'evil-write)

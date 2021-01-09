@@ -51,3 +51,6 @@
 
 (package! helm-org-rifle)
 (package! fill-column-indicator)
+
+;; disable evil-snipe package.
+(package! evil-snipe :disable t)
