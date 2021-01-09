@@ -192,6 +192,7 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 let g:UltiSnipsExpandTrigger = "<C-J>"
 let g:UltiSnipsJumpForwardTrigger = "<C-J>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "ultisnippets"]
 
 " FZF settings.
 nnoremap <silent> <Leader>fs :Rg <C-R><C-W><CR>
