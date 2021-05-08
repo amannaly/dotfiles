@@ -98,22 +98,19 @@
   (add-hook 'org-mode-hook 'turn-on-flyspell)
   )
 
-;; configure fill-column-indicator plugin
-;; this feature is natively provided by emacs 27, howerver
-;; mac still uses 26 version.
-(add-hook 'org-mode-hook 'fci-mode)
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
-(setq-default fci-rule-color "#0F0E0E")
-(setq-default fci-rule-column 100)
-(setq-default fci-rule-width 0)
 (setq-default fill-column 100)
 
 ;; maximize window on startup
 (add-hook 'window-setup-hook #'toggle-frame-maximized)
 
+;; ss saves buffer.
 (map! :map evil-normal-state-map
       "B" #'evil-first-non-blank
       "E" #'evil-last-non-blank
       ; s is mapped to evil-substitue. remove that so that i can map ss to write
       "s" nil
       "ss" #'evil-write)
+
+;; don't ask for confirmation with quitting.
+(setq confirm-kill-emacs nil)
