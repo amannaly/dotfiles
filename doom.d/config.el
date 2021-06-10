@@ -85,6 +85,8 @@
    org-refile-use-outline-path 'file
    org-outline-path-complete-in-steps nil
 
+   org-refile-allow-creating-parent-nodes 'confirm
+
    ;; all done tasks should be archived to archive.org
    org-archive-location "~/org/archive.org::"
 
