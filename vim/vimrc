@@ -130,6 +130,7 @@ let g:tagbar_zoomwidth = 0
 let g:tagbar_width = 80
 let g:tagbar_autoclose = 1
 let g:tagbar_show_linenumbers = 1
+let g:tagbar_map_help = ['<F1>']
 
 " Syntastic settings
 set statusline+=%#warningmsg#
