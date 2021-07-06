@@ -110,6 +110,7 @@ nnoremap gd :YcmCompleter GoTo<CR>
 nnoremap gr :YcmCompleter GoToReferences<CR>
 nnoremap gD :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>R :YcmCompleter RefactorRename
+nnoremap <leader>yf :YcmCompleter FixIt<CR>
 
 "Close YCM preview window"
 let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -129,6 +130,7 @@ let g:tagbar_zoomwidth = 0
 let g:tagbar_width = 80
 let g:tagbar_autoclose = 1
 let g:tagbar_show_linenumbers = 1
+let g:tagbar_map_help = ['<F1>']
 
 " Syntastic settings
 set statusline+=%#warningmsg#
