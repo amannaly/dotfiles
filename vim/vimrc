@@ -205,6 +205,16 @@ nnoremap <silent> <leader>fb :Buffers<CR>
 " Fuzzy search current buffer.
 nnoremap <silent> ? :BLines<CR>
 
+" F2 to toggle quick fix window
+function! ToggleQuickFix()
+  if empty(filter(getwininfo(), 'v:val.quickfix'))
+    copen
+  else
+    cclose
+  endif
+endfunction
+nnoremap <silent> <F2> :call ToggleQuickFix()<cr>
+
 " clang format should use google style
 if s:is_google==0
   Glaive vim-codefmt clang_format_style='google'
