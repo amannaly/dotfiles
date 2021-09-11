@@ -70,6 +70,40 @@
       :prefix ("s" . "+search")
       :desc "Rifle agenda files" "r" #'helm-org-rifle-agenda-files)
 
+
+;; add CREATED property to an entry with the current timestamp.
+;; copied from https://emacs.stackexchange.com/a/21302
+(defvar org-created-property-name "CREATED"
+  "The name of the org mode property that stores the creation date of the entry.")
+
+(defun org-set-created-property (&optional active NAME)
+  "Set a property on the entry giving the creation time.
+By default the property is called CREATED. If given the `NAME'
+argument will be used instead. If the property already exists, it
+will not be modified."
+  (interactive)
+  (let* ((created (or NAME org-created-property-name))
+         (fmt (if active "<%s>" "[%s]"))
+         (now  (format fmt (format-time-string "%Y-%m-%d %a %H:%M"))))
+    (unless (org-entry-get (point) created nil)
+      (org-set-property created now))))
+
+(map! :after org
+      :map org-mode-map
+      :leader
+      :prefix ("i" . "+insert")
+      :desc "insert a CREATED property" "t" #'org-set-created-property)
+;; end CREATED property
+
+
+;; copied from https://zzamboni.org/post/beautifying-org-mode-in-emacs/
+(custom-theme-set-faces
+ 'user
+ '(org-drawer ((t (:inherit (shadow fixed-pitch) :weight normal :height 0.8))))
+ '(org-special-keyword ((t (:inherit (shadow fixed-pitch) :weight normal :height 0.8))))
+ '(org-property-value ((t (:inherit (shadow fixed-pitch) :weight normal :height 0.8))))
+ )
+
 (after! org
   (setq
    org-hide-emphasis-markers t
