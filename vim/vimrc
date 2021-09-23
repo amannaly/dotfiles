@@ -36,6 +36,7 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'benmills/vimux'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'ojroques/vim-oscyank'
 
 " Not for google
 if s:is_google==0
@@ -113,6 +114,8 @@ nnoremap gr :YcmCompleter GoToReferences<CR>
 nnoremap gD :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>R :YcmCompleter RefactorRename
 nnoremap <leader>yf :YcmCompleter FixIt<CR>
+" this mapping is already done just here for my reference.
+" nnoremap <leader>d :YcmShowDetailedDiagnostic<CR>
 
 "Close YCM preview window"
 let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -216,6 +219,9 @@ function! ToggleQuickFix()
   endif
 endfunction
 nnoremap <silent> <F2> :call ToggleQuickFix()<cr>
+
+" vimux
+nnoremap <leader>vq :VimuxCloseRunner<CR>
 
 " clang format should use google style
 if s:is_google==0
