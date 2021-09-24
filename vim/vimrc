@@ -37,6 +37,8 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'benmills/vimux'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ojroques/vim-oscyank'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
 
 " Not for google
 if s:is_google==0
