@@ -39,6 +39,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ojroques/vim-oscyank'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
+Plugin 'altercation/vim-colors-solarized'
 
 " Not for google
 if s:is_google==0
@@ -62,6 +63,9 @@ syntax on
 set t_Co=256
 set background=dark
 colorscheme solarized
+
+" Colors for terminal window. Used by FZF for example.
+hi Terminal ctermbg=black ctermfg=blue guibg=black guifg=blue
 
 let mapleader=","       " leader is comma
 
