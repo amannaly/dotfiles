@@ -40,6 +40,7 @@ Plugin 'ojroques/vim-oscyank'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'mhinz/vim-startify'
 
 " Not for google
 if s:is_google==0
@@ -228,6 +229,9 @@ nnoremap <silent> <F2> :call ToggleQuickFix()<cr>
 
 " vimux
 nnoremap <leader>vq :VimuxCloseRunner<CR>
+nnoremap <leader>vl :VimuxRunLastCommand<CR>
+nnoremap <leader>vz :call VimuxZoomRunner()<CR>
+nnoremap <leader>vp :VimuxPromptCommand<CR>
 
 " clang format should use google style
 if s:is_google==0
