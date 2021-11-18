@@ -41,6 +41,9 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'psliwka/vim-smoothie'
+Plugin 'dyng/ctrlsf.vim'
+Plugin 'mhinz/vim-startify'
+Plugin 'mg979/vim-visual-multi'
 
 " Not for google
 if s:is_google==0
@@ -66,7 +69,7 @@ set background=dark
 colorscheme solarized
 
 " Colors for terminal window. Used by FZF for example.
-hi Terminal ctermbg=black ctermfg=blue guibg=black guifg=blue
+hi Terminal ctermbg=black ctermfg=white guibg=black guifg=white
 
 let mapleader=","       " leader is comma
 
@@ -118,7 +121,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-nnoremap gd :rightbelow vertical YcmCompleter GoTo<CR>
+nnoremap gd :YcmCompleter GoTo<CR>
 nnoremap gr :YcmCompleter GoToReferences<CR>
 nnoremap gD :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>R :YcmCompleter RefactorRename <C-R><C-W>
@@ -129,7 +132,6 @@ nnoremap <leader>yf :YcmCompleter FixIt<CR>
 "Close YCM preview window"
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_goto_buffer_command = 'split-or-existing-window'
 
 "Disable auto hover feature
 let g:ycm_auto_hover = ''
@@ -212,7 +214,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "ultisnippets"]
 
 " FZF settings.
-nnoremap <silent> <Leader>fs :Rg <C-R><C-W><CR>
+nnoremap <silent> <Leader>fs :Rg <C-R><C-W>
 nnoremap <C-P> :FZF<CR>
 " Fuzzy search history.
 nnoremap <silent> <leader>fh :History:<CR>
@@ -235,6 +237,17 @@ nnoremap <leader>vq :VimuxCloseRunner<CR>
 nnoremap <leader>vl :VimuxRunLastCommand<CR>
 nnoremap <leader>vz :call VimuxZoomRunner()<CR>
 nnoremap <leader>vp :VimuxPromptCommand<CR>
+
+" vim-startify settings
+let g:startify_session_persistence = 1
+let g:startify_lists = [
+          \ { 'type': 'dir',       'header': ['   MRU '. getcwd()]  },
+          \ { 'type': 'sessions',  'header': ['   Sessions']        },
+          \ ]
+let g:startify_custom_header = ['VIM']
+
+" debugger
+let g:termdebug_wide=1
 
 " clang format should use google style
 if s:is_google==0
