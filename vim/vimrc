@@ -121,6 +121,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+let g:ycm_complete_in_comments = 1
 nnoremap gd :YcmCompleter GoTo<CR>
 nnoremap gr :YcmCompleter GoToReferences<CR>
 nnoremap gD :YcmCompleter GoToDeclaration<CR>
