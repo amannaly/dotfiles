@@ -120,9 +120,14 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+" maximize current split
+nnoremap <C-M> <C-W>\|
+" restore the previous state after a maximize
+nnoremap <C-M><C-M> <C-W>=
 
 let g:ycm_complete_in_comments = 1
 nnoremap gd :YcmCompleter GoTo<CR>
+nnoremap sgd :vsplit \| :YcmCompleter GoTo<CR>
 nnoremap gr :YcmCompleter GoToReferences<CR>
 nnoremap gD :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>R :YcmCompleter RefactorRename <C-R><C-W>
