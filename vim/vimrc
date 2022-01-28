@@ -103,9 +103,6 @@ nnoremap gV `[v`]
 " jk is escape
 inoremap jk <esc>
 
-" toggle gundo
-nnoremap <leader>u ::UndotreeToggle<CR>>
-
 set foldenable          " enable folding
 set foldlevelstart=10   " open most folds by default
 set foldnestmax=10      " 10 nested fold max
@@ -143,9 +140,6 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_auto_hover = ''
 nmap <leader>D <Plug>(YCMHover)
 
-"Close buffer without closing window"
-map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
-
 "Map tagbar for outline
 nmap <C-t> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
@@ -154,6 +148,7 @@ let g:tagbar_width = 80
 let g:tagbar_autoclose = 1
 let g:tagbar_show_linenumbers = 1
 let g:tagbar_map_help = ['<F1>']
+let g:tagbar_ctags_bin = 'ctags-universal'
 
 " Syntastic settings
 set statusline+=%#warningmsg#
@@ -194,6 +189,15 @@ let g:airline_theme='minimalist'
 set undofile
 set undodir=~/.vim/undodir
 
+" undotree
+nnoremap <leader>u ::UndotreeToggle<CR>>
+let g:undotree_RelativeTimestamp = 1
+let g:undotree_ShortIndicators = 1
+let g:undotree_HelpLine = 0
+let g:undotree_WindowLayout = 2
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_SplitWidth = 60
+
 "NERD commenter
 let g:NERDDefaultAlign = 'left' " align to left
 let g:NERDCommentEmptyLines = 1
@@ -228,15 +232,36 @@ nnoremap <silent> <leader>fb :Buffers<CR>
 " Fuzzy search current buffer.
 nnoremap <silent> ? :BLines<CR>
 
-" F2 to toggle quick fix window
-function! ToggleQuickFix()
-  if empty(filter(getwininfo(), 'v:val.quickfix'))
-    copen
-  else
-    cclose
+" Toggle quickfix and location list
+function! GetBufferList()
+  redir =>buflist
+  silent! ls!
+  redir END
+  return buflist
+endfunction
+
+function! ToggleList(bufname, pfx)
+  let buflist = GetBufferList()
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      exec(a:pfx.'close')
+      return
+    endif
+  endfor
+  if a:pfx == 'l' && len(getloclist(0)) == 0
+      echohl ErrorMsg
+      echo "Location List is Empty."
+      return
+  endif
+  let winnr = winnr()
+  exec(a:pfx.'open')
+  if winnr() != winnr
+    wincmd p
   endif
 endfunction
-nnoremap <silent> <F2> :call ToggleQuickFix()<cr>
+
+nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
+nmap <silent> <leader>q :call ToggleList("Quickfix List", 'c')<CR>
 
 " vimux
 nnoremap <leader>vq :VimuxCloseRunner<CR>
