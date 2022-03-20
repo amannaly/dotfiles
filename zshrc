@@ -124,3 +124,5 @@ source_file /usr/share/doc/fzf/examples/key-bindings.zsh
 if ! type "$fdfind" > /dev/null; then
   alias fd=fdfind
 fi
+
+setopt +o nomatch
