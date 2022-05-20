@@ -92,7 +92,7 @@ will not be modified."
       :map org-mode-map
       :leader
       :prefix ("i" . "+insert")
-      :desc "insert a CREATED property" "t" #'org-set-created-property)
+      :desc "insert a CREATED property" "p" #'org-set-created-property)
 ;; end CREATED property
 
 
@@ -147,6 +147,22 @@ will not be modified."
       ; s is mapped to evil-substitue. remove that so that i can map ss to write
       "s" nil
       "ss" #'evil-write)
+
+; from https://stackoverflow.com/a/619525
+; insert time in HH:MM format
+(defun now ()
+  "Insert string for the current time formatted like '2:34'."
+  (interactive)                 ; permit invocation in minibuffer
+  (insert (format-time-string "%H:%M")))
+;; map SPC t i to now()
+(map! :after org
+      :map org-mode-map
+      :leader
+      :prefix ("i" . "+toggle")
+      :desc "Insert current time" "t" #'now)
+; duration in minutes. Used in daily activity table.
+(setq org-table-duration-custom-format (quote hh:mm))
+
 
 ;; don't ask for confirmation with quitting.
 (setq confirm-kill-emacs nil)
