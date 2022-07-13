@@ -27,7 +27,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-solarized-dark)
 
 ; In macOS we cannot symlink to Google drive sync directory.
 (setq local-org-directory
@@ -162,6 +162,41 @@ will not be modified."
       :desc "Insert current time" "t" #'now)
 ; duration in minutes. Used in daily activity table.
 (setq org-table-duration-custom-format (quote hh:mm))
+
+; change the format of org headings.
+; From https://hugocisneros.com/org-config/
+(defun my/set-specific-faces-org ()
+   (set-face-attribute 'org-code nil
+                       :inherit '(shadow fixed-pitch))
+   ;; Without indentation the headlines need to be different to be visible
+   (set-face-attribute 'org-level-1 nil
+                       :height 1.25
+                       :foreground "#BEA4DB")
+   (set-face-attribute 'org-level-2 nil
+                       :height 1.15
+                       :foreground "#A382FF"
+                       :slant 'italic)
+   (set-face-attribute 'org-level-3 nil
+                       :height 1.1
+                       :foreground "#5E65CC"
+                       :slant 'italic)
+   (set-face-attribute 'org-level-4 nil
+                       :height 1.05
+                       :foreground "#ABABFF")
+   (set-face-attribute 'org-level-5 nil
+                       :foreground "#2843FB")
+   (set-face-attribute 'org-date nil
+                       :foreground "#ECBE7B"
+                       :height 0.8)
+   (set-face-attribute 'org-document-title nil
+                       :foreground "DarkOrange3"
+                       :height 1.3)
+   (set-face-attribute 'org-ellipsis nil
+                       :foreground "#4f747a" :underline nil)
+   (set-face-attribute 'variable-pitch nil
+                       :family "Roboto Slab" :height 1.2))
+
+(add-hook 'org-mode-hook 'my/set-specific-faces-org)
 
 
 ;; don't ask for confirmation with quitting.
