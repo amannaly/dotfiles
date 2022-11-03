@@ -126,3 +126,5 @@ if ! type "$fdfind" > /dev/null; then
 fi
 
 setopt +o nomatch
+
+setopt HIST_IGNORE_SPACE

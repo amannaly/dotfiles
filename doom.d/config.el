@@ -16,8 +16,8 @@
 ;; + `doom-variable-pitch-font'
 ;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
 ;;   presentations or streaming.
-(setq doom-font (font-spec :family "Source Code Pro" :size 16 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "Source Code Pro" :size 16))
+ (setq doom-font (font-spec :family "Fira Code" :size 16 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "Fira Code" :size 16))
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
@@ -110,6 +110,7 @@ will not be modified."
    org-ellipsis " ... "
    org-agenda-files (directory-files-recursively "~/org/" "\\.org$")
    org-todo-keywords '((sequence "TODO(t)" "INPROGRESS(w)" "|" "DONE(d)" "CANCELLED(c)"))
+
 
    ;; org-refile
    ;; from https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html

@@ -54,3 +54,12 @@
 
 ;; disable evil-snipe package.
 (package! evil-snipe :disable t)
+
+;; got an error "Could not find package gitconfig-mode"
+;; https://github.com/doomemacs/doomemacs/issues/5667#issuecomment-948232137
+(package! gitconfig-mode
+	  :recipe (:host github :repo "magit/git-modes"
+			 :files ("gitconfig-mode.el")))
+(package! gitignore-mode
+	  :recipe (:host github :repo "magit/git-modes"
+			 :files ("gitignore-mode.el")))
